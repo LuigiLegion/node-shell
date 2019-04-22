@@ -12,9 +12,16 @@ process.stdin.on('data', data => {
     const cat = require('./cat.js');
     const actualFileName = cmd.slice(4);
     cat(actualFileName);
-  } else {
+  } else if (cmd.slice(0, 4) === 'curl'){
+        const curl = require('./curl.js');
+        const webAddy = cmd.slice(5);
+        curl(webAddy)
+  }
+  
+  else {
     process.stdout.write(
       'You typed: ' + cmd + ' and that means nothing to me.'
     );
+    process.stdout.write('\nprompt > ')
   }
 });
