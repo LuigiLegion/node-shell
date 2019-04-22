@@ -1,10 +1,11 @@
 const request = require('request');
 
-
-module.exports = function (url){
-    // console.log(request)
-    // const http = request('http');
-    request.get(url, (res) =>
-        console.log(res)
-    )
-}
+module.exports = function(webAddress, done) {
+  request(webAddress, { json: true }, (err, res, body) => {
+    if (err) {
+      throw err;
+    } else {
+      done(body.explanation);
+    }
+  });
+};
